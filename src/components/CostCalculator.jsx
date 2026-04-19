@@ -245,6 +245,39 @@ export default function CostCalculator() {
                   <span>Traditional vs {currentModel?.title}</span>
                 </div>
 
+                <div className="compare-summary">
+                  <div className="compare-summary-row">
+                    <div className="compare-summary-item compare-summary-old">
+                      <span className="compare-summary-tag">Old way</span>
+                      <strong>₹{calculations.traditionalTotal.toLocaleString("en-IN")}</strong>
+                      <small>Printed cards, delivery, and manual calling</small>
+                    </div>
+                    <div className="compare-summary-arrow" aria-hidden="true">→</div>
+                    <div className="compare-summary-item compare-summary-new">
+                      <span className="compare-summary-tag">With Aamantran</span>
+                      <strong>₹{calculations.solutionTotal.toLocaleString("en-IN")}</strong>
+                      <small>{currentModel?.title}</small>
+                    </div>
+                  </div>
+                  <div className="compare-summary-highlight">
+                    <strong>
+                      You save ₹{calculations.savings.toLocaleString("en-IN")}
+                      {calculations.traditionalTotal > 0
+                        ? ` — that's ${Math.round(
+                            (calculations.savings / calculations.traditionalTotal) * 100,
+                          )}% less than the traditional way`
+                        : ""}
+                    </strong>
+                    <p>
+                      For {families} families, the traditional process costs about{" "}
+                      {calculations.solutionTotal > 0
+                        ? `${(calculations.traditionalTotal / calculations.solutionTotal).toFixed(1)}×`
+                        : "many times"}{" "}
+                      more than using Aamantran.
+                    </p>
+                  </div>
+                </div>
+
                 <div className="calc-breakdown-grid">
                   <div className="calc-breakdown-card">
                     <span className="panel-label">Traditional breakdown</span>
@@ -276,6 +309,12 @@ export default function CostCalculator() {
                           )}
                         </strong>
                       </div>
+                      <div className="summary-list-total">
+                        <span>Traditional total</span>
+                        <strong>
+                          ₹{calculations.traditionalTotal.toLocaleString("en-IN")}
+                        </strong>
+                      </div>
                     </div>
                   </div>
 
@@ -304,8 +343,8 @@ export default function CostCalculator() {
                           <strong>₹{line.value.toLocaleString("en-IN")}</strong>
                         </div>
                       ))}
-                      <div>
-                        <span>Total solution cost</span>
+                      <div className="summary-list-total">
+                        <span>Aamantran total</span>
                         <strong>
                           ₹{calculations.solutionTotal.toLocaleString("en-IN")}
                         </strong>
