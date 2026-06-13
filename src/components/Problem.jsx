@@ -3,20 +3,20 @@ import SectionHeading from "./SectionHeading";
 
 const problems = [
   {
-    title: "Expensive wedding cards",
-    text: "Design, printing, logistics, and last-minute reprints inflate costs before the event even begins.",
+    title: "Printed cards cost a fortune",
+    text: "₹50–₹500 per card, plus designers, printing, and home delivery. Reprints when names get misspelled. The bill adds up before the event starts.",
   },
   {
-    title: "Manual WhatsApp sharing",
-    text: "Families still forward one by one, rebuild lists, and resend the same message across groups.",
+    title: "Sharing on WhatsApp is manual",
+    text: "Someone in the family forwards the invite one chat at a time. Lists get rebuilt for every event. The same message goes out three times.",
   },
   {
-    title: "Calling guests is a headache",
-    text: "Hosts spend nights making reminder calls instead of focusing on the celebration itself.",
+    title: "Reminder calls eat your evenings",
+    text: "You spend nights calling the same 200 numbers. \"Did you get the invite?\" \"Are you coming?\" Most go to voicemail.",
   },
   {
-    title: "No tracking means social pressure",
-    text: "You don’t know who saw the invite, who ignored it, or who now expects a personal follow-up call.",
+    title: "You never know who saw it",
+    text: "Did Chacha open it? Did the cousins forward it? Without tracking, you guess — and then someone shows up offended that they weren't \"called personally\".",
   },
 ];
 
@@ -25,9 +25,9 @@ export default function Problem() {
     <section className="section" id="problem">
       <div className="container">
         <SectionHeading
-          eyebrow="Problem"
-          title="Indian celebrations still run on stress, spreadsheets, and social pressure"
-          description="The invitation process is emotional, repetitive, and surprisingly expensive. Families carry the burden manually."
+          eyebrow="The problem"
+          title="Indian weddings still run on stress and spreadsheets"
+          description="Whether you're a family doing it once or a planner doing it weekly — the invite process eats time, money, and patience."
         />
 
         <div className="problem-grid">

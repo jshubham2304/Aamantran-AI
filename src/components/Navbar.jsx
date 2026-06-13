@@ -11,23 +11,14 @@ export default function Navbar() {
         </a>
 
         <nav className="nav-links" aria-label="Primary">
-          <a href="#solution">Solution</a>
+          <a href="#solution">How it works</a>
           <a href="#demo">Demo</a>
-          <a href="#calculator">Calculator</a>
-          <a href="#business">Business</a>
-          <a
-            className="nav-link-highlight"
-            href="https://forms.gle/5NRDvCpgMu94Vmrq8"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="nav-link-highlight-dot" aria-hidden="true" />
-            RSVP
-          </a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
         </nav>
 
         <a className="btn btn-primary btn-small" href="#waitlist">
-          Join Waitlist
+          Get started
         </a>
       </div>
     </header>

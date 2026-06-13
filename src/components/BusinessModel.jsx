@@ -1,73 +1,178 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 
-const pricingPlans = [
+const familyPlans = [
   {
-    title: "Starter Invite",
-    value: "From ₹49",
-    tag: "Low-friction",
-    text: "For users who just want a beautiful digital invite without spending thousands on printing.",
-    points: ["Ready-made premium template", "Image or PDF export", "Fast sharing link"],
+    title: "Starter",
+    value: "₹499",
+    suffix: "one-time",
+    tag: "Just the invite",
+    text: "Premium digital invite — image, PDF, and shareable link.",
+    points: [
+      "AI-designed template",
+      "Image + PDF export",
+      "Shareable WhatsApp link",
+      "Edits for 7 days",
+    ],
+    saves: "Saves ₹4,500+ vs 100 printed cards",
   },
   {
     title: "Smart Send",
-    value: "₹149–₹399",
-    tag: "Most useful",
-    text: "The best value tier for families who want card creation plus WhatsApp sending and better coordination.",
-    points: ["Invite + WhatsApp automation", "Contact segmentation", "Basic delivery tracking"],
+    value: "₹2,499",
+    suffix: "per event",
+    tag: "Most popular",
+    highlight: true,
+    text: "Invite + WhatsApp bulk send + delivery tracking. The right pick for most weddings.",
+    points: [
+      "Everything in Starter",
+      "WhatsApp bulk send (up to 300 guests)",
+      "Contact segmentation",
+      "Sent/seen/RSVP tracking",
+      "Email + WhatsApp support",
+    ],
+    saves: "Saves ~₹35,000 vs printing + calling",
   },
   {
     title: "Agentic Premium",
-    value: "₹999+",
-    tag: "Time saver",
-    text: "For users who want the AI agent to handle reminders, voice calls, and tracking end to end.",
-    points: ["AI follow-up agent", "Voice reminder workflows", "Live tracking and RSVP insights"],
+    value: "₹7,499",
+    suffix: "per event",
+    tag: "Hands-off",
+    text: "AI agent handles reminder calls, RSVPs, and follow-ups in your tone.",
+    points: [
+      "Everything in Smart Send",
+      "AI reminder calls (Hindi + regional)",
+      "Voice in your tone",
+      "Live RSVP dashboard",
+      "Priority support",
+      "Unlimited guests",
+    ],
+    saves: "Saves 20+ hours of chasing",
+  },
+];
+
+const plannerPlans = [
+  {
+    title: "Studio",
+    value: "₹9,999",
+    suffix: "per month",
+    tag: "Small studios",
+    text: "Up to 5 active weddings per month. Built for boutique planners and event teams.",
+    points: [
+      "5 active weddings / month",
+      "3 team seats",
+      "WhatsApp bulk send",
+      "Multi-event (mehendi, sangeet, reception)",
+      "Branded invites",
+      "Email support",
+    ],
+    saves: "Replaces ₹40K+ of tools and manual ops",
   },
   {
-    title: "Partner Revenue",
-    value: "After trust",
-    tag: "Platform upside",
-    text: "Once user adoption is strong, vendors, subscriptions, and marketplace layers expand revenue without making the core product expensive.",
-    points: ["Vendor leads", "Creator subscriptions", "Celebration marketplace"],
+    title: "Agency",
+    value: "₹29,999",
+    suffix: "per month",
+    tag: "Most popular",
+    highlight: true,
+    text: "For studios doing 10+ weddings a month. Unlimited events, full AI agent, white-label.",
+    points: [
+      "Unlimited weddings",
+      "Unlimited team seats",
+      "AI reminder calls included",
+      "White-label invites + custom domain",
+      "Vendor lead routing",
+      "Priority phone support",
+      "Onboarding + training",
+    ],
+    saves: "Pays for itself by wedding #3",
+  },
+  {
+    title: "Enterprise",
+    value: "Custom",
+    suffix: "annual contract",
+    tag: "Chains & destinations",
+    text: "Multi-city operations, destination weddings, and venue partners.",
+    points: [
+      "Everything in Agency",
+      "Multi-region accounts",
+      "Vendor marketplace integration",
+      "API + CRM hooks",
+      "Dedicated success manager",
+      "99.9% uptime SLA",
+    ],
+    saves: "Volume pricing from 50+ weddings/mo",
   },
 ];
 
 export default function BusinessModel() {
+  const [mode, setMode] = useState("family");
+  const plans = mode === "family" ? familyPlans : plannerPlans;
+
   return (
-    <section className="section" id="business">
+    <section className="section" id="pricing">
       <div className="container">
         <SectionHeading
-          eyebrow="Business Model"
-          title="Cheap enough for users, strong enough for the business"
-          description="The product starts with pricing that feels like an easy yes for Indian families. Revenue expands through upgrades and ecosystem layers, not by overcharging the core invite."
+          eyebrow="Pricing"
+          title="Pricing that makes sense for both sides"
+          description="Families pay per event — no subscriptions. Planners pay monthly with margins that actually work for a wedding business."
         />
 
-        <div className="business-grid">
-          {pricingPlans.map((plan, index) => (
-            <motion.article
-              key={plan.title}
-              className="business-card"
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.06,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            >
-              <span className="business-value">{plan.value}</span>
-              <small className="business-tag">{plan.tag}</small>
-              <h3>{plan.title}</h3>
-              <p>{plan.text}</p>
-              <div className="business-points">
-                {plan.points.map((point) => (
-                  <span key={point}>{point}</span>
-                ))}
-              </div>
-            </motion.article>
-          ))}
+        <div className="pricing-toggle" role="tablist" aria-label="Pricing audience">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={mode === "family"}
+            className={`pricing-toggle-pill ${mode === "family" ? "is-active" : ""}`}
+            onClick={() => setMode("family")}
+          >
+            For families
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={mode === "planner"}
+            className={`pricing-toggle-pill ${mode === "planner" ? "is-active" : ""}`}
+            onClick={() => setMode("planner")}
+          >
+            For planners
+          </button>
         </div>
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={mode}
+            className="business-grid"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {plans.map((plan) => (
+              <article
+                key={plan.title}
+                className={`business-card ${plan.highlight ? "is-highlight" : ""}`}
+              >
+                <span className="business-value">
+                  {plan.value}
+                  <em>{plan.suffix}</em>
+                </span>
+                <small className="business-tag">{plan.tag}</small>
+                <h3>{plan.title}</h3>
+                <p>{plan.text}</p>
+                <div className="business-points">
+                  {plan.points.map((point) => (
+                    <span key={point}>{point}</span>
+                  ))}
+                </div>
+                <div className="business-saves">{plan.saves}</div>
+              </article>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+
+        <p className="pricing-note">
+          GST extra where applicable. WhatsApp Business API fees billed at cost on volume sends. Cancel anytime — no annual lock-in on Studio/Agency.
+        </p>
       </div>
     </section>
   );

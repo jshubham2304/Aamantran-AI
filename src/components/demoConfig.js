@@ -180,64 +180,64 @@ export function getTemplateById(templateId) {
 export const deliveryModels = [
   {
     id: "cards",
-    title: "Only Cards",
-    priceLabel: "₹500 fixed",
-    tagline: "Image or PDF invite pack",
-    summary: "Best for families who only want a premium card delivered instantly.",
+    title: "Starter — invite only",
+    priceLabel: "₹499 fixed",
+    tagline: "Premium digital invite",
+    summary: "Best for families who only want a beautiful card delivered as image + PDF.",
   },
   {
     id: "bulk",
-    title: "Card + WhatsApp Bulk Send",
-    priceLabel: "₹4-₹10 per invite",
-    tagline: "Invite + bulk WhatsApp automation",
-    summary: "Includes card generation, personalization, and WhatsApp distribution.",
+    title: "Smart Send — invite + WhatsApp",
+    priceLabel: "₹2,499 base + send",
+    tagline: "Invite + bulk WhatsApp + tracking",
+    summary: "Card generation, personalization, WhatsApp bulk send, and delivery tracking.",
   },
   {
     id: "agentic",
-    title: "All in One Agentic AI",
-    priceLabel: "₹1,500+ by group",
-    tagline: "Personalized AI agent in your own voice",
-    summary: "Agentic AI handles reminders, pending guests, calls, and tracking end to end.",
+    title: "Agentic Premium — AI handles it all",
+    priceLabel: "₹4,999+ by group",
+    tagline: "Personalized AI agent in your tone",
+    summary: "Agentic AI handles reminders, pending guests, voice calls, and live tracking end to end.",
   },
 ];
 
 export function getAgenticBasePrice(families) {
   if (families <= 100) {
-    return 1500;
+    return 4999;
   }
 
   if (families <= 200) {
-    return 2000;
+    return 6499;
   }
 
   if (families <= 500) {
-    return 2500;
+    return 8499;
   }
 
-  return 2500 + Math.ceil((families - 500) / 200) * 500;
+  return 8499 + Math.ceil((families - 500) / 200) * 1500;
 }
 
-export function getSolutionBreakdown(modelId, families, whatsappRate = 7) {
+export function getSolutionBreakdown(modelId, families, whatsappRate = 12) {
   if (modelId === "cards") {
     return {
-      total: 500,
+      total: 499,
       lines: [
-        { label: "Card design + export", value: 500 },
+        { label: "Card design + export", value: 499 },
       ],
     };
   }
 
   if (modelId === "bulk") {
-    const designCost = 500;
+    const designCost = 2499;
     const messageCount = families;
     const messageCost = messageCount * whatsappRate;
 
     return {
       total: designCost + messageCost,
       lines: [
-        { label: "Card design + export", value: designCost },
+        { label: "Smart Send base (invite + tracking)", value: designCost },
         {
-          label: `Bulk WhatsApp send (${messageCount} x ₹${whatsappRate})`,
+          label: `Bulk WhatsApp send (${messageCount} × ₹${whatsappRate})`,
           value: messageCost,
         },
       ],
@@ -246,13 +246,13 @@ export function getSolutionBreakdown(modelId, families, whatsappRate = 7) {
 
   const basePackage = getAgenticBasePrice(families);
   const messageTouchpoints = families * 3;
-  const messageRate = 1;
+  const messageRate = 2;
   const messageCost = messageTouchpoints * messageRate;
   const callFamilies = Math.ceil(families * 0.35);
   const callMinutes = callFamilies * 3;
-  const aiCallMinuteRate = 2;
+  const aiCallMinuteRate = 4;
   const callCost = callMinutes * aiCallMinuteRate;
-  const trackingCost = families;
+  const trackingCost = families * 2;
 
   return {
     total: basePackage + messageCost + callCost + trackingCost,

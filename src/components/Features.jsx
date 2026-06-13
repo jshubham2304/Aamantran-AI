@@ -3,28 +3,20 @@ import SectionHeading from "./SectionHeading";
 
 const features = [
   {
-    title: "AI design generator",
-    text: "Create premium digital invites from a few event prompts instead of waiting on manual designers.",
+    title: "AI invite designer",
+    text: "Premium templates for weddings, mehendi, sangeet, housewarmings, and more. Generated from a short brief — not a 2-week designer cycle.",
   },
   {
-    title: "Regional language support",
-    text: "Hindi, Gujarati, Marathi, Tamil, Telugu, Bengali and mixed-language copy for real Indian families.",
+    title: "Regional languages",
+    text: "Hindi, Gujarati, Marathi, Tamil, Telugu, Bengali, and mixed-language copy. Made for how Indian families actually speak.",
   },
   {
-    title: "Contact sync",
-    text: "Upload spreadsheets, family lists, or vendor databases and segment guests instantly.",
+    title: "AI reminder calls",
+    text: "Polite, natural-sounding voice calls in your tone. Guests confirm in 30 seconds — you stop calling 200 people.",
   },
   {
-    title: "AI voice calls",
-    text: "Automated reminders and RSVP follow-ups in natural voices without exhausting the host.",
-  },
-  {
-    title: "Invite tracking",
-    text: "See sent, viewed, pending, and response signals in a clean operational dashboard.",
-  },
-  {
-    title: "Vendor integrations",
-    text: "Plug planners, photographers, caterers, decorators, and gifting partners into the celebration flow.",
+    title: "Live RSVP dashboard",
+    text: "Sent, viewed, replied, pending. One screen for the whole family or planning team — no spreadsheet, no guessing.",
   },
 ];
 
@@ -33,9 +25,9 @@ export default function Features() {
     <section className="section" id="features">
       <div className="container">
         <SectionHeading
-          eyebrow="Advanced AI"
-          title="Built for the reality of Indian events"
-          description="Aamantran AI combines design, distribution, reminders, and monetization into one operating layer."
+          eyebrow="Features"
+          title="Everything you need. Nothing you don't."
+          description="Four things the platform does well. Designed for Indian weddings, by people who have run them."
         />
 
         <div className="feature-grid">

@@ -12,11 +12,11 @@ export default function CostCalculator() {
   const averageCallMinutes = 3;
   const [step, setStep] = useState(1);
   const [families, setFamilies] = useState(200);
-  const [cardCost, setCardCost] = useState(50);
-  const [printDeliveryCost, setPrintDeliveryCost] = useState(2);
-  const [callMinuteValue, setCallMinuteValue] = useState(1);
+  const [cardCost, setCardCost] = useState(200);
+  const [printDeliveryCost, setPrintDeliveryCost] = useState(30);
+  const [callMinuteValue, setCallMinuteValue] = useState(5);
   const [selectedModel, setSelectedModel] = useState("agentic");
-  const [whatsappRate, setWhatsappRate] = useState(7);
+  const [whatsappRate, setWhatsappRate] = useState(12);
 
   const calculations = useMemo(() => {
     const guests = families * 3;
@@ -215,8 +215,8 @@ export default function CostCalculator() {
                     <span>WhatsApp invite cost: ₹{whatsappRate} per invite</span>
                     <input
                       type="range"
-                      min="4"
-                      max="10"
+                      min="8"
+                      max="18"
                       step="1"
                       value={whatsappRate}
                       onChange={(event) => setWhatsappRate(Number(event.target.value))}
@@ -230,8 +230,8 @@ export default function CostCalculator() {
                       Group base package: ₹{getAgenticBasePrice(families).toLocaleString("en-IN")}
                     </strong>
                     <p>
-                      Pricing is based on family group size: 0-100 = ₹1,500, 101-200 = ₹2,000,
-                      201-500 = ₹2,500, then increases in slabs beyond that.
+                      Pricing is based on family group size: 0–100 = ₹4,999, 101–200 = ₹6,499,
+                      201–500 = ₹8,499, then +₹1,500 per 200 families beyond that.
                     </p>
                   </div>
                 ) : null}
